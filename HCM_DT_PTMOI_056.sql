@@ -13,6 +13,8 @@ select 202409,ma_pb,ma_to,ma_nv,ma_vtcv
                  and ma_vtcv=a.ma_vtcv)
 ;
    -----
+   ------
+   -------
 update ct_bsc_ptmoi_056 a
    set cntt_tyle_thuchien=case when cntt_dthu_giao>0 then round(nvl(cntt_dthu_thuchien,0)/cntt_dthu_giao*100,2) end
       ,cntt_diem_tru_bsc=case when cntt_dthu_giao>0 and nvl(cntt_dthu_thuchien,0)<cntt_dthu_giao*0.9 then 5 end
