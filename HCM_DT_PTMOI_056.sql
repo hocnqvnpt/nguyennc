@@ -3,7 +3,7 @@ delete from ct_bsc_ptmoi_056 where thang=202409;
 insert into ct_bsc_ptmoi_056
        (thang,ma_pb,ma_to,ma_nv,ma_vtcv
        ,cntt_dthu_giao,cntt_dthu_thuchien,cdbr_mytv_dthu_giao,cdbr_mytv_dthu_thuchien,didong_dthu_giao,didong_dthu_thuchien)   
-select 202409,ma_pb,ma_to,ma_nv,ma_vtcv
+select thang,ma_pb,ma_to,ma_nv,ma_vtcv
       ,nhomcntt_dtgiao,nhomcntt_kqth,nhombrcd_dtgiao,nhombrcd_kqth
       ,nhomvina_dtgiao,nvl(nhomvinats_kqth,0)+nvl(nhomvinatt_kqth,0)nhomvina_kqth
   from dinhmuc_giao_dthu_ptm a
@@ -12,9 +12,8 @@ select 202409,ma_pb,ma_to,ma_nv,ma_vtcv
                where thang=202409 and ma_kpi='HCM_DT_PTMOI_056' and to_truong_pho is null and giamdoc_phogiamdoc is null 
                  and ma_vtcv=a.ma_vtcv)
 ;
-   -----
-   ------
-   -------
+
+
 update ct_bsc_ptmoi_056 a
    set cntt_tyle_thuchien=case when cntt_dthu_giao>0 then round(nvl(cntt_dthu_thuchien,0)/cntt_dthu_giao*100,2) end
       ,cntt_diem_tru_bsc=case when cntt_dthu_giao>0 and nvl(cntt_dthu_thuchien,0)<cntt_dthu_giao*0.9 then 5 end
