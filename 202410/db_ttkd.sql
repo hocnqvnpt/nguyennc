@@ -80,3 +80,22 @@ create or replace view ttkd_bct.v_dbtb_ttkd as
 				join ttkd_bct.db_thuebao_ttkd b on a.thuebao_id = b.thuebao_id
 ;
 select * from ttkd_bct.v_dbtb_ttkd;
+
+
+
+select donviql_id,count(*) from nguyennc.danhba_dds_102024 group by donviql_id;
+
+update dbtb_ttkd set CHUQUAN_ID='' where dichvuvt_id = 2 and trim(nguon)='vnp_hh';
+update dbtb_ttkd a
+   set CHUQUAN_ID=145
+ where dichvuvt_id = 2 and trim(nguon)='vnp_hh'
+   and exists(select * from nguyennc.danhba_dds_102024 where somay=a.ma_tb and ma_kh=a.ma_tt);
+ 
+   
+   select CHUQUAN_ID,count(*) from dbtb_ttkd where dichvuvt_id = 2 and trim(nguon)='vnp_hh' group by CHUQUAN_ID ; 
+  
+    select * from dbtb_ttkd where dichvuvt_id = 2 and CHUQUAN_ID is null; 
+ 
+ 
+    select * from dbtb_ttkd where dichvuvt_id = 2 and trim(nguon)='vnp_hh' and CHUQUAN_ID is null; 
+  
