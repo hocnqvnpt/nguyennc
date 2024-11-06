@@ -34,7 +34,7 @@ select cast(null as number(15)) tb_id, db.KHACHHANG_ID, kh.MA_KH, db.THANHTOAN_I
 from  ttkd_bct.v_db db
 			left join css_hcm.db_khachhang kh on db.khachhang_id = kh.khachhang_id
 			left join css_hcm.db_thanhtoan tt on db.thanhtoan_id = tt.thanhtoan_id
-where db.ngay_sd between '01/10/2024' and '31/10/2024'
+where trunc(db.ngay_sd) between '01/10/2024' and '31/10/2024'
 			and db.dichvuvt_id not in (2)
 ;
 ----Insert hang ngay----DS PTM trong thang n (VNPts)
