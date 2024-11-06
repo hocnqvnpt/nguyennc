@@ -80,15 +80,16 @@ where dichvuvt_id = 2
 ;
 commit;
 ---Insert vao bang chinh
+truncate table ttkd_bct.dbtb_ttkd;
 insert into  ttkd_bct.dbtb_ttkd
-	select cast(202410 as number) thang, a.* from ttkd_bct.dbtb_ttkd_tmp a
+	select cast(202410 as number) thang, a.* from ttkd_bct.dbtb_ttkd_tmp a  ---thang n
 ;
 commit;
 
 create or replace view ttkd_bct.v_dbtb_ttkd as
 	select a.*, b.mapb_ql, b.donvi_id
 	from ttkd_bct.dbtb_ttkd a
-				join ttkd_bct.db_thuebao_ttkd b on a.thuebao_id = b.thuebao_id
+				left join ttkd_bct.db_thuebao_ttkd b on a.thuebao_id = b.thuebao_id
 ;
 select * from ttkd_bct.v_dbtb_ttkd;
 
