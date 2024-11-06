@@ -48,6 +48,17 @@ insert into ttkd_bct.dbtb_ttkd_tmp
 					left join css_hcm.db_thanhtoan tt on db.thanhtoan_id = tt.thanhtoan_id
 		where a.chuquan_id = 145
 ;
+----Insert hang thang Sau khi BanKTNV gửi file vao----DS VNPts chuyen tinh về HCM trong thang n (VNPts)
+insert into ttkd_bct.dbtb_ttkd_tmp
+		select null tb_id, db.KHACHHANG_ID, kh.MA_KH, db.THANHTOAN_ID, db.THUEBAO_ID, a.SOMAY, a.ma_kh MA_TT
+							, a.NGAY_LD, null, null,  db.DICHVUVT_ID, db.LOAITB_ID, a.TRANGTHAI_ID, 145 CHUQUAN_ID,  145 CHUQUAN_ID_OLD
+							, 'vnp_moi_ct' nguon, null tontai_db
+		from ccs_hcm.danhba_dds_102024@ttkddbbk2 a			---thang n
+					left join css_hcm.db_thuebao db on db.loaitb_id = 20 and a.somay = '84' || db.ma_tb --and db.ma_tb = '842613371'
+					left join css_hcm.db_khachhang kh on db.khachhang_id = kh.khachhang_id
+					left join css_hcm.db_thanhtoan tt on db.thanhtoan_id = tt.thanhtoan_id
+		where a.ma_kh like 'HCMCT%' and to_char(ngay_ld,'yyyymm') = '202410'		--thang n
+;
 ----Move danh ba hien huu thang n-1 (ngoai tru VNPts)
 insert into ttkd_bct.dbtb_ttkd_tmp
 select TB_ID, v_db.KHACHHANG_ID, v_db.ma_kh, v_db.THANHTOAN_ID, db.THUEBAO_ID, db.MA_TB, cast(null as varchar(40)) ma_tt
