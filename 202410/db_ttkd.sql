@@ -83,6 +83,22 @@ where trunc(db.ngay_kp) between '01/10/2024' and '31/10/2024'
 			and db.dichvuvt_id not in (2)
 			and not exists (select 1 from ttkd_bct.dbtb_ttkd_tmp where thuebao_id = db.thuebao_id)
 ;
+----Insert hang ngay----DS chuyen chu quan (ban cheo) trong thang n (ngoai tru VNPts)
+insert into ttkd_bct.dbtb_ttkd_tmp
+select cast(null as number(15)) tb_id, db.KHACHHANG_ID, kh.MA_KH, db.THANHTOAN_ID, db.THUEBAO_ID, db.MA_TB, tt.MA_TT
+			, db.NGAY_SD, db.NGAY_TD, db.NGAY_CAT, db.DICHVUVT_ID, db.LOAITB_ID, db.TRANGTHAITB_ID, db.CHUQUAN_ID
+			, db.CHUQUAN_ID CHUQUAN_ID_OLD
+			, 'onebss_cq' nguon, nvl2(db.thuebao_id, 1, 0) tontai_db
+from  ttkd_bct.v_db db
+			left join css_hcm.db_khachhang kh on db.khachhang_id = kh.khachhang_id
+			left join css_hcm.db_thanhtoan tt on db.thanhtoan_id = tt.thanhtoan_id
+where db.dichvuvt_id not in (2) and trangthaitb_id not in (7, 8, 9) and trunc(db.ngay_sd) < '01/10/2024'
+			and exists (select 1 from css_hcm.hd_thuebao xi 
+									where thuebao_id = db.thuebao_id --and trunc(ngay_ht) between '01/10/2024' and '31/10/2024'
+												and exists (select 1 from css_hcm.kieu_ld where loaihd_id = 2 and xi.kieuld_id = kieuld_id)
+								)
+			and not exists (select 1 from ttkd_bct.dbtb_ttkd_tmp where thuebao_id = db.thuebao_id)
+			;
 ----Move danh ba hien huu thang n-1 (VNPts)
 insert into ttkd_bct.dbtb_ttkd_tmp
 select TB_ID, KHACHHANG_ID, MA_KH, THANHTOAN_ID, db.THUEBAO_ID, MA_TB, MA_TT
