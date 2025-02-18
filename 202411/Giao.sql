@@ -73,7 +73,7 @@ update bangluong_kpi a
    set giao=(select sum(tong_luyke) from ttkdhcm_ktnv.kehoach_606 where thang=a.thang and id_dv_606='0' and hrm=a.ma_nv)
        --   update bangluong_kpi a set giao=''
        --   select * from bangluong_kpi a
- where thang=202411 and ma_kpi='HCM_DT_LUYKE_002'
+ where thang=202411 and ma_kpi='HCM_DT_LUYKE_002'  -- and ma_nv='VNP017331'
    and exists (select * from blkpi_danhmuc_kpi_vtcv 
                 where thang=202411 and upper(ma_kpi)='HCM_DT_LUYKE_002' and to_truong_pho is null and giamdoc_phogiamdoc is null
                   and ma_vtcv=a.ma_vtcv);
@@ -83,7 +83,7 @@ update bangluong_kpi a
    set giao=(select sum(tong_luyke) from ttkdhcm_ktnv.kehoach_606 where thang=a.thang and id_dv_606='0' and to_hrm=a.ma_to)
        --   update bangluong_kpi a set giao=''
        --   select * from bangluong_kpi a
- where thang=202411 and ma_kpi='HCM_DT_LUYKE_002'
+ where thang=202411 and ma_kpi='HCM_DT_LUYKE_002'    -- and ma_nv='VNP020742'
    and exists (select * from blkpi_danhmuc_kpi_vtcv 
                 where thang=202411 and upper(ma_kpi)='HCM_DT_LUYKE_002' and to_truong_pho is not null
                   and ma_vtcv=a.ma_vtcv);
@@ -113,14 +113,14 @@ select (select distinct ma_nv from blkpi_dm_to_pgd
          where thang=a.thang and ma_pb in ('VNP0702300','VNP0702400','VNP0702500') and ma_to=a.to_hrm)ma_nv
       ,tong_luyke
   from ttkdhcm_ktnv.kehoach_606 a
- where thang=202411 and id_dv_606='0'
+ where thang=202411 and id_dv_606='0'  
 )group by ma_nv;
  
 update bangluong_kpi a
    set giao=(select dthu from temp_bsc_giao where ma_nv=a.ma_nv)
        --   update bangluong_kpi a set giao=''
        --   select * from bangluong_kpi a
- where thang=202411 and ma_kpi='HCM_DT_LUYKE_002'
+ where thang=202411 and ma_kpi='HCM_DT_LUYKE_002'  --  and ma_nv='VNP017763'
    and exists (select * from blkpi_danhmuc_kpi_vtcv 
                 where thang=202411 and upper(ma_kpi)='HCM_DT_LUYKE_002' and giamdoc_phogiamdoc is not null
                   and ma_vtcv=a.ma_vtcv);
@@ -133,7 +133,7 @@ update bangluong_kpi a
    set giao=(select sum(tong_luyke) from ttkdhcm_ktnv.kehoach_606 where thang=a.thang and id_dv_606='1.1' and hrm=a.ma_nv)
       --   update bangluong_kpi a set giao=''
        --   select * from bangluong_kpi a
- where thang=202411 and ma_kpi='HCM_DT_LUYKE_003'
+ where thang=202411 and ma_kpi='HCM_DT_LUYKE_003'   -- and ma_nv='VNP017331'
    and exists (select * from blkpi_danhmuc_kpi_vtcv 
                 where thang=202411 and upper(ma_kpi)='HCM_DT_LUYKE_003' and to_truong_pho is null and giamdoc_phogiamdoc is null
                   and ma_vtcv=a.ma_vtcv);
@@ -143,7 +143,7 @@ update bangluong_kpi a
    set giao=(select sum(tong_luyke) from ttkdhcm_ktnv.kehoach_606 where thang=a.thang and id_dv_606='1.1' and to_hrm=a.ma_to)
        --   update bangluong_kpi a set giao=''
        --   select * from bangluong_kpi a
- where thang=202411 and ma_kpi='HCM_DT_LUYKE_003'
+ where thang=202411 and ma_kpi='HCM_DT_LUYKE_003'   -- and ma_nv='VNP020742'
    and exists (select * from blkpi_danhmuc_kpi_vtcv 
                 where thang=202411 and upper(ma_kpi)='HCM_DT_LUYKE_003' and to_truong_pho is not null
                   and ma_vtcv=a.ma_vtcv);
@@ -180,7 +180,7 @@ update bangluong_kpi a
    set giao=(select dthu from temp_bsc_giao where ma_nv=a.ma_nv)
        --   update bangluong_kpi a set giao=''
        --   select * from bangluong_kpi a
- where thang=202411 and ma_kpi='HCM_DT_LUYKE_003'
+ where thang=202411 and ma_kpi='HCM_DT_LUYKE_003'    --and ma_nv='VNP017763'
    and exists (select * from blkpi_danhmuc_kpi_vtcv 
                 where thang=202411 and upper(ma_kpi)='HCM_DT_LUYKE_003' and giamdoc_phogiamdoc is not null
                   and ma_vtcv=a.ma_vtcv);
